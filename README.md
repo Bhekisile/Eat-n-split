@@ -21,28 +21,26 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [The Wild Oasis] <a name="about-project"></a>
+# 📖 [Eat-n-Split] <a name="about-project"></a>
 
 
-**[The Wild Oasis]** is a hotel management app built with React as a frontend framework and Supabase as a backend database service. It allows hotel employees to manage bookings, cabins and guests.
+**[Eat-n-Split]** is a 
 
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 - **[React]**
-- **[Vite]**
-- **[SCSS]**
+- **[]**
+- **[CSS]**
 
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
 
-- **[Dashboard]**
-- **[Bookings]**
-- **[Cabins]**
-- **[Users]**
-- **[Settings]**
+- **[Group of Friends]**
+- **[Friend details]**
+- **[Bill information]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -50,7 +48,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://leafy-kheer-01702f.netlify.app/)
+- [Live Demo Link]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -75,7 +73,7 @@ Clone or fork this repository to your desired folder:
 ### Usage
 
 To run the project, run: 
-npm run dev
+npm start
 
 
 ### Deployment
