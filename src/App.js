@@ -23,17 +23,23 @@ const initialFriends = [
 ];
 
 function App() {
+  const [friends, setFriends] = useState(initialFriends);
   const [showAddFriend, setShowAddFriend] = useState(false);
 
   const handleShowAddFriend = () => {
     setShowAddFriend((show) => !show);
   };
 
+  const handleAddFriend = (friend) => {
+    setFriends((friends) => [...friends, friend]);
+    setShowAddFriend(false);
+  };
+
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendsList />
-        {showAddFriend && <FormAddFriend />}
+        <FriendsList friends={friends} />
+        {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend} />}
         <Button onClick={handleShowAddFriend}>
           {showAddFriend ? 'Close' : 'Add friend'}
         </Button>
@@ -44,9 +50,7 @@ function App() {
   );
 }
 
-function FriendsList() {
-  const friends = initialFriends;
-
+function FriendsList({ friends }) {
   return (
     <ul>
       {friends.map((friend) => (
@@ -55,6 +59,10 @@ function FriendsList() {
     </ul>
   );
 }
+
+FriendsList.propTypes = {
+  friends: PropTypes.objectOf(PropTypes.checkPropTypes()).isRequired,
+};
 
 function Friend({ friend }) {
   return (
@@ -103,23 +111,45 @@ Friend.propTypes = {
 };
 
 function Button({ children, onClick }) {
-  return <button type="button" className="button" onClick={onClick}>{children}</button>;
+  return <button type="submit" className="button" onClick={onClick}>{children}</button>;
 }
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };
 
 /* eslint-disable */
-function FormAddFriend() {
+function FormAddFriend({ onAddFriend }) {
+  const [name, setName] = useState('');
+  const [image, setImage] = useState('https://i.pravatar.cc/48?u=933372');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!name || !image) return;
+
+    const id = crypto.randomUUID();
+    const newFriend = {
+      id,
+      name,
+      image: `${image}?=${id}`,
+      balance: 0,
+    };
+
+    onAddFriend(newFriend);
+
+    setName('');
+    setImage('https://i.pravatar.cc/48?u=933372');
+  }
+
   return (
-    <form className="form-add-friend">
+    <form className="form-add-friend" onSubmit={handleSubmit}>
       <label htmlFor="friend-name">🧑‍🤝‍🧑Friend name</label>
-      <input id="friend-name" type="text" />
+      <input id="friend-name" type="text" onChange={(e) => setName(e.target.value)} />
 
       <label htmlFor="image-url">🌄 Image URL</label>
-      <input id="image-url" type="text" />
+      <input id="image-url" type="text" onChange={(e) => setImage(e.target.value)} />
 
       <Button>Add</Button>
 
@@ -138,7 +168,7 @@ function FormSplitBill() {
       <label>🕴️ Your expense</label>
       <input type="text" />
 
-      <label>🧑‍🤝‍🧑 X's expense</label>
+      <label>🧑‍🤝‍🧑 X&apos;s expense</label>
       <input type="text" disabled />
 
       <label>🧑 Who is paying the bill</label>
