@@ -186,6 +186,10 @@ FormAddFriend.propTypes = {
 };
 
 function FormSplitBill({ selectedFriend }) {
+  const [bill, setBill] = useState('');
+  const [paidByUser, setPaidByUser] = useState('');
+  const [whoIsPaying, setWhoIsPaying] = useState('user');
+
   return (
     <form className="form-split-bill">
       <h2>Split a bill with {selectedFriend.name}</h2>
