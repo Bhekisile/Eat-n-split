@@ -42,6 +42,16 @@ function App() {
     setShowAddFriend(false);
   };
 
+  const handleSplitBill = (value) => {
+    setFriends(
+      (friends) => friends.map(
+        (friend) => (friend.id === selectedFriend.id
+          ? { ...friend, balance: friend.balance + value } : friend),
+      ),
+    );
+    setSelectedFriend(null);
+  };
+
   return (
     <div className="app">
       <div className="sidebar">
@@ -58,7 +68,12 @@ function App() {
         </Button>
       </div>
 
-      {selectedFriend && <FormSplitBill selectedFriend={selectedFriend} />}
+      {selectedFriend && (
+      <FormSplitBill
+        selectedFriend={selectedFriend}
+        onSplitBill={handleSplitBill}
+      />
+      )}
     </div>
   );
 }
@@ -185,14 +200,21 @@ FormAddFriend.propTypes = {
   onAddFriend: PropTypes.func.isRequired,
 };
 
-function FormSplitBill({ selectedFriend }) {
+function FormSplitBill({ selectedFriend, onSplitBill }) {
   const [bill, setBill] = useState('');
   const [paidByUser, setPaidByUser] = useState('');
   const paidByFriend = bill ? bill - paidByUser : '';
   const [whoIsPaying, setWhoIsPaying] = useState('user');
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!bill || !paidByUser) return;
+    onSplitBill(whoIsPaying === 'user' ? paidByFriend : -paidByUser);
+  }
+
   return (
-    <form className="form-split-bill">
+    <form className="form-split-bill" onSubmit={handleSubmit}>
       <h2>Split a bill with {selectedFriend.name}</h2>
 
       <label htmlFor="bill-value">💰 Bill value</label>
@@ -208,7 +230,7 @@ function FormSplitBill({ selectedFriend }) {
         type="text"
         id="your-expense"
         value={paidByUser}
-        onChange={(e) => setPaidByUser(Number(e.target.value))}
+        onChange={(e) => setPaidByUser(Number(e.target.value) > bill ? paidByUser : Number(e.target.value))}
       />
 
       <label htmlFor="friend-expense">🧑‍🤝‍🧑 {selectedFriend.name}&apos;s expense</label>
@@ -231,6 +253,7 @@ function FormSplitBill({ selectedFriend }) {
 
 FormSplitBill.propTypes = {
   selectedFriend: PropTypes.objectOf(PropTypes.checkPropTypes()).isRequired,
+  onSplitBill: PropTypes.func.isRequired,
 }
 
 export default App;
