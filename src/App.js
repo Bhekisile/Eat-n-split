@@ -195,7 +195,12 @@ function FormSplitBill({ selectedFriend }) {
       <h2>Split a bill with {selectedFriend.name}</h2>
 
       <label htmlFor="bill-value">💰 Bill value</label>
-      <input id="bill-value" type="text" />
+      <input
+        id="bill-value"
+        type="text" 
+        value={bill}
+        onChange={(e) => setBill(e.target.value)}
+      />
 
       <label htmlFor="your-expense">🕴️ Your expense</label>
       <input type="text" id="your-expense" />
