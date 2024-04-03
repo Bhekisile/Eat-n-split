@@ -6,7 +6,6 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-    - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
@@ -24,14 +23,13 @@
 # 📖 [Eat-n-Split] <a name="about-project"></a>
 
 
-**[Eat-n-Split]** is a 
+**[Eat-n-Split]** This is a split-bill React application. A user can add a friend's name and enter the total amount of a bill, then select the person responsible for the payment. The app will calculate the amount owed by the person who's paying the bill.
 
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 - **[React]**
-- **[]**
 - **[CSS]**
 
 <!-- Features -->
@@ -41,14 +39,6 @@
 - **[Group of Friends]**
 - **[Friend details]**
 - **[Bill information]**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LIVE DEMO -->
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-- [Live Demo Link]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -68,7 +58,7 @@ npm install
 
 Clone or fork this repository to your desired folder:
 
--git clone https://github.com/Bhekisile/The-Wild-Oasis.git
+-git clone https://github.com/Bhekisile/Eat-n-split.git
 
 ### Usage
 
@@ -93,7 +83,7 @@ You can deploy this project using: Netlify
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Accomplishments]**
+- [ ] **[Responsiveness]**
 
 <!-- CONTRIBUTING -->
 
